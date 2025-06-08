@@ -8,9 +8,9 @@ function CrimeSpreeManager:on_mission_completed(mission_id)
 	if not self:has_failed() then
 		local mission_data = self:get_mission(mission_id)
 		local spree_add = mission_data.add
-		local infamy_multiplier = managers.player:get_infamy_exp_multiplier()
+		local multiplier = managers.player:get_skill_exp_multiplier() + managers.player:get_infamy_exp_multiplier() - 1
 
-		spree_add = math.round(spree_add * infamy_multiplier)
+		spree_add = math.round(spree_add * multiplier)
 
 		self._mission_completion_gain = spree_add
 
